@@ -15,6 +15,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins="http://localhost:4200")
 public class EtudiantController {
 
 
@@ -68,10 +69,9 @@ public class EtudiantController {
         etudiantService.AssignEtudtoDepartement(idEtudiant,idDepart);
     }
     @PostMapping("/addeqpC/{idContrat}/{idEquipe}")
-    public void  addEtudtoEqpandContrat(@RequestBody Etudiant E,@PathVariable("idContrat") Long idC,@PathVariable("idEquipe") Long idEqp){
-        etudiantService.addAndAssignEtudiantToEquipeAndContract(E,idC,idEqp);
+    public void  addEtudtoEqpandContrat(@RequestBody Etudiant E,@PathVariable("idContrat") Long idC,@PathVariable("idEquipe") Long idEquipe){
+        etudiantService.addAndAssignEtudiantToEquipeAndContract(E,idC,idEquipe);
     }
-
 
 
 

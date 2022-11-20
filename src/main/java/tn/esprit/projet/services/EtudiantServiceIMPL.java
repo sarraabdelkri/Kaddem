@@ -17,9 +17,9 @@ public class EtudiantServiceIMPL implements IEtudiantService{
 
     EtudiantRepository etudiantRepository;
     DepartementRepository departementRepository;
-    EquipeRepository equipeRepository;
-
     ContratRepository contratRepository;
+
+    EquipeRepository equipeRepository;
     @Override
     public List<Etudiant> getAllEtudiant() {
         return etudiantRepository.findAll();
@@ -50,6 +50,9 @@ public class EtudiantServiceIMPL implements IEtudiantService{
     public Etudiant findEtudiantByprenom(String prenom) {
         return etudiantRepository.findEtudiantByprenom(prenom);
     }
+
+    @Override
+    public Etudiant findEtudiantBynom(String nom) { return etudiantRepository.findEtudiantBynom(nom); }
 
     @Override
     public void updateEtudiantByOption(Option op, Long idEtudiant) {

@@ -16,11 +16,10 @@ public interface IEtudiantService {
     Etudiant getEtudiantbyid(long id);
 
     Etudiant findEtudiantByprenom(String prenom);
-
+    Etudiant findEtudiantBynom(String nom);
     void updateEtudiantByOption(Option op , Long idEtudiant);
 
     List<Etudiant> retrieveEtudiantByEquipeThematique (  String thematique);
     public  void AssignEtudtoDepartement(Long idEtudiant, Long idDepart);
     Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e,Long idContract,Long idEquipe);
-
 }

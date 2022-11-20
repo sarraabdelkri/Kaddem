@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.projet.entities.Departement;
 import tn.esprit.projet.entities.Option;
+import tn.esprit.projet.entities.Universite;
 import tn.esprit.projet.repository.DepartementRepository;
+import tn.esprit.projet.repository.UniversiteRepository;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -16,8 +19,9 @@ public class DepartementServiceIMPL implements IDepartementService {
 
 
 
-    DepartementRepository departementRepository;
 
+    DepartementRepository departementRepository;
+    UniversiteRepository universiteRepository;
 
     @Override
     public List<Departement> getAlldep() {
@@ -49,4 +53,10 @@ public class DepartementServiceIMPL implements IDepartementService {
     public List<Departement> retrieveDepartementByOptionEtudiant(Option op) {
         return departementRepository.retrieveDepartementByOptionEtudiant(op);
     }
+    @Override
+    public Set<Departement> retrieveDepartementsByUniversite(Long idUniversite) {
+        Universite uni=universiteRepository.findById(idUniversite).orElse(null);
+        return  uni.getDepartement();
+    }
+
 }

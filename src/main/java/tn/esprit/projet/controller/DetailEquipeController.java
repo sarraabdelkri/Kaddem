@@ -13,8 +13,9 @@ import tn.esprit.projet.services.IDetailEquipeService;
 
 import java.util.List;
 
-@RestController
 @AllArgsConstructor
+@RestController
+@CrossOrigin(origins="http://localhost:4200")
 public class DetailEquipeController {
 
 
