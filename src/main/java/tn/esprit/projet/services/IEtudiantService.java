@@ -6,6 +6,7 @@ import tn.esprit.projet.entities.Etudiant;
 import tn.esprit.projet.entities.Option;
 
 import java.util.List;
+import java.util.Set;
 
 public interface IEtudiantService {
 
@@ -16,10 +17,15 @@ public interface IEtudiantService {
     Etudiant getEtudiantbyid(long id);
 
     Etudiant findEtudiantByprenom(String prenom);
-    Etudiant findEtudiantBynom(String nom);
+
     void updateEtudiantByOption(Option op , Long idEtudiant);
 
     List<Etudiant> retrieveEtudiantByEquipeThematique (  String thematique);
     public  void AssignEtudtoDepartement(Long idEtudiant, Long idDepart);
-    Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e,Long idContract,Long idEquipe);
+
+     Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e,Long idContract,Long idEquipe);
+
+    Set<Etudiant> getEtudiantsByDepartement (Long idDepartement);
+
+
 }

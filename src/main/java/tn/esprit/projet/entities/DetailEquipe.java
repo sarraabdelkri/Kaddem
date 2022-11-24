@@ -13,7 +13,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 
 
 public class DetailEquipe  implements Serializable {

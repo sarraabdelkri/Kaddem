@@ -15,7 +15,6 @@ public interface EtudiantRepository extends JpaRepository<Etudiant,Long> {
 
      Etudiant findEtudiantByprenom(String prenom) ;
 
-     Etudiant findEtudiantBynom(String nom) ;
      @Modifying
      @Transactional
      @Query(" update Etudiant set option = :op where idEtudiant = :idEtudiant")

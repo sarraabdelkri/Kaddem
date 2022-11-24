@@ -13,9 +13,10 @@ import tn.esprit.projet.services.IDepartementService;
 import java.util.List;
 import java.util.Set;
 
-@AllArgsConstructor
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
+
+@AllArgsConstructor
 public class DepartementController {
 
     IDepartementService iDepartementService;
@@ -43,12 +44,13 @@ public class DepartementController {
 
         iDepartementService.deletedep(id);
     }
+    @GetMapping("/department/{idDepart}")
 
-    @GetMapping("/getDep/{option}")
-    public List<Departement> GetDepQ(@PathVariable("option" ) Option op){
-
-        return  iDepartementService.retrieveDepartementByOptionEtudiant(op);
+    public Departement getDepartmentById(@PathVariable("idDepart") Long idDepart) {
+        return iDepartementService.getdepbyid(idDepart);
     }
+
+
     @GetMapping("/getIDU/{idUni}")
     public Set<Departement> GetDepByIdUni(@PathVariable("idUni") Long ID){
 

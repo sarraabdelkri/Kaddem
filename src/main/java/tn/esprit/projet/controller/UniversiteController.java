@@ -4,15 +4,16 @@ package tn.esprit.projet.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.projet.entities.Departement;
 import tn.esprit.projet.entities.Equipe;
 import tn.esprit.projet.entities.Universite;
 import tn.esprit.projet.services.IUniversiteService;
 
 import java.util.List;
 
-@AllArgsConstructor
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
+@AllArgsConstructor
 public class UniversiteController {
 
 
@@ -40,6 +41,11 @@ public class UniversiteController {
     public  void deleteUni(@PathVariable("idUni") Long id){
 
      iUniversiteService.deleteUni(id);
+    }
+    @GetMapping("/universite/{idUni}")
+
+    public Universite getUniversiteById(@PathVariable("idUni") Long idUni) {
+        return iUniversiteService.getUnid(idUni);
     }
     @PostMapping("/addUniDep/{idUni}/{idDepart}")
     public void  addUnivtoDep(@PathVariable("idUni") Long idU,@PathVariable("idDepart") Long id){

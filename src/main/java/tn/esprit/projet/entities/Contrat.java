@@ -1,6 +1,8 @@
 package tn.esprit.projet.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +13,8 @@ import java.util.Date;
 @Table( name = "Contrat")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Contrat implements Serializable {
 
 

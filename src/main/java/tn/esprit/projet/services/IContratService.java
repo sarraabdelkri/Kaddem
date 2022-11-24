@@ -12,7 +12,11 @@ public interface IContratService {
     Contrat updateContrat(Contrat C);
     void deleteContrat(long id);
     Contrat getContratbyid(long id);
+
+    Contrat affectContratToEtudiant (Contrat ce,String prenomE);
+
+
     Integer nbContratsValides(Date startDate, Date endDate);
 
-    float getChiffreAffaireEntreDeuxDate(Date startDate, Date endDate);
+   float getChiffreAffaireEntreDeuxDate(Date startDate, Date endDate);
 }

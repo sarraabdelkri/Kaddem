@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.List;
 @AllArgsConstructor
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
 public class ContratController {
 
     IContratService contratService;
@@ -41,8 +40,13 @@ public class ContratController {
 
         contratService.deleteContrat(id);
     }
+    @PostMapping("/addCtrTo/{prenom}")
+    public void  addContratToStudent(@RequestBody Contrat C,@PathVariable("prenom")String pre){
+
+        contratService.affectContratToEtudiant(C,pre);
+    }
     @GetMapping("/getValide/{DateDebutContrat}/{DateFinContrat}")
-    public Integer GetValide(@PathVariable("DateDebutContrat") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dateD, @PathVariable("DateFinContrat")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)Date dateF){
+    public Integer GetValide(@PathVariable("DateDebutContrat") @DateTimeFormat (iso = DateTimeFormat.ISO.DATE)Date dateD, @PathVariable("DateFinContrat")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)Date dateF){
 
         return  contratService.nbContratsValides(dateD,dateF);
     }

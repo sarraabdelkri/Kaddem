@@ -19,9 +19,9 @@ public class DepartementServiceIMPL implements IDepartementService {
 
 
 
-
     DepartementRepository departementRepository;
     UniversiteRepository universiteRepository;
+
 
     @Override
     public List<Departement> getAlldep() {
@@ -53,10 +53,10 @@ public class DepartementServiceIMPL implements IDepartementService {
     public List<Departement> retrieveDepartementByOptionEtudiant(Option op) {
         return departementRepository.retrieveDepartementByOptionEtudiant(op);
     }
+
     @Override
     public Set<Departement> retrieveDepartementsByUniversite(Long idUniversite) {
         Universite uni=universiteRepository.findById(idUniversite).orElse(null);
         return  uni.getDepartement();
     }
-
 }

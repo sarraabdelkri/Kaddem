@@ -4,6 +4,7 @@ package tn.esprit.projet.controller;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.projet.entities.Equipe;
 import tn.esprit.projet.entities.Etudiant;
@@ -12,10 +13,10 @@ import tn.esprit.projet.services.EtudiantServiceIMPL;
 import tn.esprit.projet.services.IEtudiantService;
 
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
 public class EtudiantController {
 
 
@@ -70,7 +71,14 @@ public class EtudiantController {
     }
     @PostMapping("/addeqpC/{idContrat}/{idEquipe}")
     public void  addEtudtoEqpandContrat(@RequestBody Etudiant E,@PathVariable("idContrat") Long idC,@PathVariable("idEquipe") Long idEquipe){
-        etudiantService.addAndAssignEtudiantToEquipeAndContract(E,idC,idEquipe);
+            etudiantService.addAndAssignEtudiantToEquipeAndContract(E,idC,idEquipe);
+    }
+
+
+    @GetMapping("/getDepById/{idDepart}")
+    public Set<Etudiant> getDepartmntbyid(@PathVariable("idDepart") Long id){
+
+        return  etudiantService.getEtudiantsByDepartement(id);
     }
 
 
