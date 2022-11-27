@@ -12,8 +12,11 @@ import java.util.List;
 
 public interface DepartementRepository extends JpaRepository<Departement,Long> {
 
-
+    //@Query("SELECT dep FROM Departement  dep,Universite universite inner JOIN universite.departement d ON d.idDepart=dep.idDepart and universite.nomUni=:nomUniv")
+   //List retrivedepartementbynomuniv(@Param("idUniv")String nomUniv);
 
     @Query("SELECT  departement FROM Departement  departement  , Etudiant e where departement.idDepart=e.departement.idDepart and e.option = :op")
     List<Departement> retrieveDepartementByOptionEtudiant(@Param("op") Option op);
+
+
 }

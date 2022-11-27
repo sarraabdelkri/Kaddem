@@ -51,5 +51,14 @@ public class UniversiteController {
     public void  addUnivtoDep(@PathVariable("idUni") Long idU,@PathVariable("idDepart") Long id){
         iUniversiteService.assignDepartToUni(idU, id);
     }
-
+    //nombre universite par universite
+    @GetMapping("/nbDepartment/{idUni}")
+    public long getnbrDepartmentByuniver(@PathVariable("idUni") Long idUni) {
+        return iUniversiteService.nbTotalDepartment(idUni);
+    }
+ /*   @GetMapping("/nbDepartmentbynom/{nomUniv}")
+    public List getnbrDepartmentBynom(@PathVariable("nomUniv") String  nomUniv) {
+        return iUniversiteService.nbTotalDepartmentbynom(nomUniv);
+    }
+*/
 }

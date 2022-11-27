@@ -1,7 +1,6 @@
 package tn.esprit.projet.services;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.projet.entities.Departement;
 import tn.esprit.projet.entities.Universite;
@@ -9,11 +8,11 @@ import tn.esprit.projet.repository.DepartementRepository;
 import tn.esprit.projet.repository.UniversiteRepository;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
 public class UniversiteServiceIMPL implements  IUniversiteService {
-
 
 
     UniversiteRepository universiteRepository;
@@ -47,11 +46,33 @@ public class UniversiteServiceIMPL implements  IUniversiteService {
 
     @Override
     public void assignDepartToUni(Long idU, Long dep) {
-        Universite universite =universiteRepository.findById(idU).orElse(null);
-        Departement departement =departementRepository.findById(dep).orElse(null);
+        Universite universite = universiteRepository.findById(idU).orElse(null);
+        Departement departement = departementRepository.findById(dep).orElse(null);
         universite.getDepartement().add(departement);
         universiteRepository.save(universite);
 
 
     }
+
+    @Override
+    public long nbTotalDepartment(Long idUni) {
+        Long nbT;
+        Universite universite=universiteRepository.findById(idUni).orElse(null);
+        nbT=universite.getDepartement().stream().count();
+        return nbT;
+    }
+
+
+
+
+
+   /* @Override
+    public List nbTotalDepartmentbynom(String nomUni) {
+       List nomdepart=new ArrayList<>();
+       Universite universite=universiteRepository.findByNomUni(nomUni);
+       nomdepart= universite.getDepartement().add();
+        return nomdepart;
+    }
+
+*/
 }

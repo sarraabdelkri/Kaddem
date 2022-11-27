@@ -2,13 +2,11 @@ package tn.esprit.projet.controller;
 
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.projet.entities.Contrat;
 import tn.esprit.projet.entities.Departement;
-import tn.esprit.projet.entities.Option;
-import tn.esprit.projet.services.IContratService;
 import tn.esprit.projet.services.IDepartementService;
+import tn.esprit.projet.services.IUniversiteService;
 
 import java.util.List;
 import java.util.Set;
@@ -20,6 +18,7 @@ import java.util.Set;
 public class DepartementController {
 
     IDepartementService iDepartementService;
+    IUniversiteService iUniversiteService;
 
     @GetMapping("/getD")
     public List<Departement> GetDep(){
@@ -56,4 +55,32 @@ public class DepartementController {
 
         return  iDepartementService.retrieveDepartementsByUniversite(ID);
     }
+    //nombre d'etudiant par department
+    @GetMapping("/nbEtudiant/{idDepart}")
+    @ResponseBody
+    public long getnbrEtudiantByDepart(@PathVariable("idDepart") Long idDepart) {
+        return iDepartementService.nbTotalEtudiant(idDepart);
+    }
+//nombre universite par universite
+
+
+@PostMapping("/Universite/{idUni}/Departments")
+public Departement createDepartment(@PathVariable(value = "idUni") Long idUni,@RequestBody Departement d) {
+
+      return   iDepartementService.createUniver(idUni,d);
+    }
+    @RequestMapping(value="/univ/{idUni}/depart",method={RequestMethod.DELETE, RequestMethod.GET})
+    public ResponseEntity<List<Departement>> deleteAllDepartmentOfUniversite(@PathVariable(value = "idUni") Long idUni)
+
+    {
+        return iDepartementService.deleteAllDepartmentOfUniversite(idUni);
+    }
+
+    @GetMapping("/universite/{idUni}/departments")
+    public ResponseEntity<List<Departement>> getAllDepartmentOfUniversite(@PathVariable(value = "idUniv")  Long idUniv) {
+
+
+        return iDepartementService.getAllDepartmentOfUniversite(idUniv);
+    }
+
 }
