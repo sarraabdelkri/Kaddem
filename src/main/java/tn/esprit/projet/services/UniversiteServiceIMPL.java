@@ -54,6 +54,8 @@ public class UniversiteServiceIMPL implements  IUniversiteService {
 
     }
 
+
+//nombre  totale department by iduniv
     @Override
     public long nbTotalDepartment(Long idUni) {
         Long nbT;

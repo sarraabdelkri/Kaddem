@@ -22,13 +22,15 @@ public interface IDepartementService {
 
     List<Departement> retrieveDepartementByOptionEtudiant( Option op);
 
-    Set<Departement> retrieveDepartementsByUniversite(Long idUniversite);
+     List<Departement>findDepartementsBynomUniversite(String nomUni);
 
   //  int getDepartementsize();
     long nbTotalEtudiant(Long idEtudiant);
          Departement createUniver(Long idUniv,Departement d);
     ResponseEntity<List<Departement>>  deleteAllDepartmentOfUniversite(Long idUniv);
-    ResponseEntity<List<Departement>> getAllDepartmentOfUniversite(Long idUniv);
-   // List retrievenomDepartsbyNomUniv(String nomUniv);
+    ResponseEntity<List<Departement>> getAllDepartmentOfUniversite(Long idUni);
+    List<String> getNomsdepartbyidUniv(String  nomUni);
+
+
 
 }

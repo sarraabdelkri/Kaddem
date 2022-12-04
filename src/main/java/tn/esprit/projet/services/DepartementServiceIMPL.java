@@ -2,15 +2,10 @@ package tn.esprit.projet.services;
 
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import tn.esprit.projet.entities.Departement;
-import tn.esprit.projet.entities.Etudiant;
 import tn.esprit.projet.entities.Option;
 import tn.esprit.projet.entities.Universite;
 import tn.esprit.projet.repository.DepartementRepository;
@@ -19,7 +14,6 @@ import tn.esprit.projet.repository.UniversiteRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,6 +47,7 @@ EtudiantRepository etudiantRepository;
 
     }
 
+
     @Override
     public Departement getdepbyid(long id) {
         return departementRepository.findById(id).orElse(null);
@@ -64,10 +59,10 @@ EtudiantRepository etudiantRepository;
     }
 
     @Override
-    public Set<Departement> retrieveDepartementsByUniversite(Long idUniversite) {
-        Universite uni=universiteRepository.findById(idUniversite).orElse(null);
-        return  uni.getDepartement();
+    public List<Departement> findDepartementsBynomUniversite(String nomUni) {
+        return departementRepository.findDepartementsBynomUniversite(nomUni);
     }
+
 
 //    @Scheduled(cron = "*/10 * * * * *" )
     /*public int getDepartementsize() {
@@ -77,7 +72,7 @@ EtudiantRepository etudiantRepository;
         return  List.size();
     }*/
 
-
+//nombre totale des etudiant by department
     @Override
     public long nbTotalEtudiant(Long idDepart){
             Long nbT;
@@ -107,8 +102,8 @@ EtudiantRepository etudiantRepository;
     }
 
     @Override
-    public ResponseEntity<List<Departement>> getAllDepartmentOfUniversite(Long idUniv) {
-        Universite universite = universiteRepository.findById(idUniv).orElse(null);
+    public ResponseEntity<List<Departement>> getAllDepartmentOfUniversite(Long idUni) {
+        Universite universite = universiteRepository.findById(idUni).orElse(null);
         List<Departement>departements=new ArrayList<Departement>();
         departements.addAll(universite.getDepartement());
 
@@ -116,20 +111,13 @@ EtudiantRepository etudiantRepository;
         return new ResponseEntity<>(departements, HttpStatus.OK);
     }
 
+//get nom department by id universite
+    @Override
+    public List<String> getNomsdepartbyidUniv(String nomUni) {
+        return null;
 
-    //recuperer les  nom department a partir du nom du universite
-   /* @Override
-    public List retrievenomDepartsbyNomUniv(String nomUniv) {
-       Universite universite=universiteRepository.findUniversiteByNomUni(nomUniv);
-       Long nb=universite.getDepartement().stream().count();
-       List noms=new ArrayList<>();
-        for(int i=0;i<nb;i++){
-            List<Departement> departement=departementRepository.retrivedepartementbynomuniv(nomUniv);
-            noms= departement.parallelStream().map(Departement::getNomDepart).collect(Collectors.toList());
-        }
-        return noms;
-    }*/
 
+    }
 
 }
 

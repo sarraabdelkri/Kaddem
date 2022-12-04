@@ -30,7 +30,6 @@ public class Etudiant implements Serializable {
     @Enumerated(EnumType.STRING)
     private Option option;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonIgnore
     Departement departement;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "etudiant")
     @JsonIgnore

@@ -27,19 +27,29 @@ public class DepartementController {
     }
 
     @PostMapping("/addDep")
-    public void  addContrat(@RequestBody Departement D){
+    public void  addDepartment(@RequestBody Departement D){
         iDepartementService.addep(D);
     }
 
 
     @PutMapping("/putDep/{idDepart}")
-    public void updateC(@PathVariable("idDepart") Long id, @RequestBody Departement C){
+    public void updateDepartment(@PathVariable("idDepart") Long id, @RequestBody Departement C){
 
         C.setIdDepart(id);
         iDepartementService.updatedep(C);
     }
+
+    @PutMapping("/putDepatement")
+    @ResponseBody
+    public Departement modifyDepartment(@RequestBody Departement d) {
+        return iDepartementService.updatedep(d);
+    }
+
+
+
+
     @DeleteMapping("/delDep/{idDepart}")
-    public  void deleteC(@PathVariable("idDepart") Long id){
+    public  void deleteDepartment(@PathVariable("idDepart") Long id){
 
         iDepartementService.deletedep(id);
     }
@@ -50,10 +60,10 @@ public class DepartementController {
     }
 
 
-    @GetMapping("/getIDU/{idUni}")
-    public Set<Departement> GetDepByIdUni(@PathVariable("idUni") Long ID){
+    @GetMapping("/getIDU/{nomUni}")
+    public List<Departement> GetDepByIdUni(@PathVariable("nomUni") String nomUni){
 
-        return  iDepartementService.retrieveDepartementsByUniversite(ID);
+        return  iDepartementService.findDepartementsBynomUniversite(nomUni);
     }
     //nombre d'etudiant par department
     @GetMapping("/nbEtudiant/{idDepart}")
@@ -76,11 +86,17 @@ public Departement createDepartment(@PathVariable(value = "idUni") Long idUni,@R
         return iDepartementService.deleteAllDepartmentOfUniversite(idUni);
     }
 
-    @GetMapping("/universite/{idUni}/departments")
-    public ResponseEntity<List<Departement>> getAllDepartmentOfUniversite(@PathVariable(value = "idUniv")  Long idUniv) {
+    @GetMapping("/universite/{idUni}/departments/")
+    public ResponseEntity<List<Departement>> getAllDepartmentOfUniversite(@PathVariable(value = "idUni")  Long idUni) {
 
 
-        return iDepartementService.getAllDepartmentOfUniversite(idUniv);
+        return iDepartementService.getAllDepartmentOfUniversite(idUni);
     }
+    @GetMapping("/getdepartbyUniv/{nomUni}")
+    public List Getdepart(@PathVariable("nomUni")String nomUni){
+        return iDepartementService.getNomsdepartbyidUniv(nomUni);
+    }
+
+
 
 }

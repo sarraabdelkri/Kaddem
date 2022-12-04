@@ -13,6 +13,7 @@ public interface IUniversiteService {
     void deleteUni(long id);
     Universite getUnid(long id);
     public void assignDepartToUni(Long idU,Long dep);
+    //void getDepartmentTouniversite(Long idU,Long dep);
     long nbTotalDepartment(Long idUni);
     //List nbTotalDepartmentbynom(String nomUni);
     //List<Universite> getUniversitebyNomDepart( Long idDepart);

@@ -9,6 +9,8 @@ import tn.esprit.projet.repository.ContratRepository;
 import tn.esprit.projet.repository.DepartementRepository;
 import tn.esprit.projet.repository.EquipeRepository;
 import tn.esprit.projet.repository.EtudiantRepository;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -83,10 +85,8 @@ public class EtudiantServiceIMPL implements IEtudiantService{
     }
 
     @Override
-    public Set<Etudiant> getEtudiantsByDepartement(Long idDepartement) {
-        Departement departement=departementRepository.findById(idDepartement).orElse(null);
-
-        return departement.getEtudiants();
+    public Set<Etudiant> getEtudiantsByDepartement(Long id) {
+        return null;
     }
 
 

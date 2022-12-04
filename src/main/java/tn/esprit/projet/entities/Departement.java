@@ -1,4 +1,5 @@
 package tn.esprit.projet.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,7 +23,11 @@ public class Departement   implements Serializable {
     private String nomDepart;
     private String code;
     private String type;
+    private String description;
+
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "departement")
     private Set<Etudiant> etudiants;
+    @ManyToOne
+    Universite universites;
 
 }
